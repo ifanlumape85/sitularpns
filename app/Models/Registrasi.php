@@ -1,0 +1,30 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+class Registrasi extends Model
+{
+    use HasFactory;
+    use SoftDeletes;
+    protected $table = 'registrasi';
+
+    protected $fillable = [
+        'id_detail_user', 'no_registrasi'
+    ];
+
+    protected $hidden = [];
+
+    public function detail_user()
+    {
+        return $this->belongsTo(Detail_user::class, 'id_detail_user', 'id');
+    }
+
+    public function persyaratan_user()
+    {
+        return $this->belongsTo(Persyaratan_user::class, 'id_registrasi', 'id');
+    }
+}
