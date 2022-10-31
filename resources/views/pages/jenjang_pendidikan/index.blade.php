@@ -8,7 +8,7 @@
                     <div class="card-header">
                         <div class="d-flex justify-content-between">
                             <h3 class="card-title">Jenjang Pendidikan</h3>
-                            <a href="{{ route('jenjang_pendidikan.create') }}" class="btn btn-primary">
+                            <a href="{{ route('jenjang_pendidikan.create') }}" class="btn btn-dark">
                                 <i class="fas fa-plus"></i> Tambah
                             </a>
                         </div>
@@ -24,25 +24,25 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th style="width: 10px">No</th>
-                                    <th>Jenjang Pendidikan</th>
+                                    <th>Tanggal</th>
+                                    <th>Jenjang</th>
                                     <th style="width: 150px">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse($items as $item)
                                 <tr>
-                                    <td>{{ $items->count() * ($items->currentPage() - 1) + $loop->iteration }}</td>
-                                    <td>{{ $item->nama_jenjang_pendidikan }}</td>
+                                    <td>{{ $item->created_at ?? null }}</td>
+                                    <td>{{ $item->nama_jenjang_pendidikan ?? null }}</td>
 
                                     <td>
-                                        <a href="{{ route('jenjang_pendidikan.edit', $item->id) }}" class="btn btn-info">
+                                        <a href="{{ route('jenjang_pendidikan.edit', $item->id) }}" class="btn btn-outline-dark">
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>
                                         <form action="{{route('jenjang_pendidikan.destroy', $item->id) }}" method="post" class="d-inline">
                                             @csrf
                                             @method('delete')
-                                            <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                            <button type="submit" class="btn btn-ouline-dark"><i class="fas fa-trash"></i></button>
                                         </form>
                                     </td>
 

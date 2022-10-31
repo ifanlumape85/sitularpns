@@ -2,11 +2,7 @@
  <aside class="main-sidebar sidebar-dark-primary elevation-4">
      <!-- Brand Logo -->
      <a href="{{ route('dashboard') }}" class="brand-link">
-         @if(auth()->user()->isAdmin())
-         <span class="brand-text font-weight-light ml-3">BKPP</span>
-         @else
-         <span class="brand-text font-weight-light ml-3">Warkop Sipaten</span>
-         @endif
+         <span class="brand-text font-weight-light ml-3">SITULAR PNS</span>
      </a>
 
      <!-- Sidebar -->
@@ -23,94 +19,21 @@
              <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                  <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-                 @if(auth()->user()->hasVerifiedEmail())
 
-                 @endif
-
-                 @if(auth()->user()->isAdmin())
-                 <li class="nav-item">
-                     <a href="#" class="nav-link">
-                         <i class="nav-icon far fa-circle text-success"></i>
-                         <p>
-                             Contact
-                             <i class="right fas fa-angle-left"></i>
-                         </p>
-                     </a>
-                     <ul class="nav nav-treeview">
-                         @can('contact-list')
-                         <li class="nav-item">
-                             <a href="{{ route('contact.index') }}" class="nav-link">
-                                 <i class="nav-icon fas fa-angle-right"></i>
-                                 <p>
-                                     Contact list
-                                 </p>
-                             </a>
-                         </li>
-                         @endcan
-                     </ul>
-                 </li>
-                 <li class="nav-item">
-                     <a href="#" class="nav-link">
-                         <i class="nav-icon far fa-circle text-success"></i>
-                         <p>
-                             Event
-                             <i class="right fas fa-angle-left"></i>
-                         </p>
-                     </a>
-                     <ul class="nav nav-treeview">
-                         @can('event-list')
-                         <li class="nav-item">
-                             <a href="{{ route('event.index') }}" class="nav-link">
-                                 <i class="nav-icon fas fa-angle-right"></i>
-                                 <p>
-                                     List event
-                                 </p>
-                             </a>
-                         </li>
-                         @endcan
-                     </ul>
-                 </li>
-                 <li class="nav-item">
-                     <a href="#" class="nav-link">
-                         <i class="nav-icon far fa-circle text-success"></i>
-                         <p>
-                             Berita
-                             <i class="right fas fa-angle-left"></i>
-                         </p>
-                     </a>
-                     <ul class="nav nav-treeview">
-                         @can('news-list')
-                         <li class="nav-item">
-                             <a href="{{ route('news.index') }}" class="nav-link">
-                                 <i class="nav-icon fas fa-angle-right"></i>
-                                 <p>
-                                     Berita
-                                 </p>
-                             </a>
-                         </li>
-                         @endcan
-                         @can('category-list')
-                         <li class="nav-item">
-                             <a href="{{ route('category.index') }}" class="nav-link">
-                                 <i class="nav-icon fas fa-angle-right"></i>
-                                 <p>
-                                     Kategori berita
-                                 </p>
-                             </a>
-                         </li>
-                         @endcan
-                         @can('tag-list')
-                         <li class="nav-item">
-                             <a href="{{ route('tag.index') }}" class="nav-link">
-                                 <i class="nav-icon fas fa-angle-right"></i>
-                                 <p>
-                                     Tag berita
-                                 </p>
-                             </a>
-                         </li>
-                         @endcan
-                     </ul>
-                 </li>
+                 @canany([
+                 'skpd-list',
+                 'skpd-create',
+                 'skpd-edit',
+                 'skpd-delete',
+                 'golongan-list',
+                 'golongan-create',
+                 'golongan-edit',
+                 'golongan-delete',
+                 'jenjang_pendidikan-list',
+                 'jenjang_pendidikan-create',
+                 'jenjang_pendidikan-edit',
+                 'jenjang_pendidikan-delete'
+                 ])
                  <li class="nav-item">
                      <a href="#" class="nav-link">
                          <i class="nav-icon far fa-circle text-success"></i>
@@ -153,11 +76,31 @@
                          @endcan
                      </ul>
                  </li>
+                 @endcanany
+
+                 @canany([
+                 'persyaratan_user-list',
+                 'persyaratan_user-create',
+                 'persyaratan_user-edit',
+                 'persyaratan_user-delete',
+                 'ujian-list',
+                 'ujian-create',
+                 'ujian-edit',
+                 'ujian-delete',
+                 'persyaratan-list',
+                 'persyaratan-create',
+                 'persyaratan-edit',
+                 'persyaratan-delete',
+                 'detail_user-list',
+                 'detail_user-create',
+                 'detail_user-edit',
+                 'detail_user-delete'
+                 ])
                  <li class="nav-item">
                      <a href="#" class="nav-link">
                          <i class="nav-icon far fa-circle text-success"></i>
                          <p>
-                             Pelayanan
+                             Layanan
                              <i class="right fas fa-angle-left"></i>
                          </p>
                      </a>
@@ -187,7 +130,7 @@
                              <a href="{{ route('persyaratan.index') }}" class="nav-link">
                                  <i class="nav-icon fas fa-angle-right"></i>
                                  <p>
-                                     Persyaratan Layanan
+                                     Kelengkapan Surat
                                  </p>
                              </a>
                          </li>
@@ -202,8 +145,30 @@
                              </a>
                          </li>
                          @endcan
+                         @can('live_chat-list')
+                         <li class="nav-item">
+                             <a href="/chatify" class="nav-link">
+                                 <i class="nav-icon far fa-circle text-success"></i>
+                                 <p>
+                                     Live chat
+                                 </p>
+                             </a>
+                         </li>
+                         @endcan
                      </ul>
                  </li>
+                 @endcanany
+
+                 @canany([
+                 'role-list',
+                 'role-create',
+                 'role-edit',
+                 'role-delete',
+                 'user-list',
+                 'user-create',
+                 'user-edit',
+                 'user-delete'
+                 ])
                  <li class="nav-item">
                      <a href="#" class="nav-link">
                          <i class="nav-icon far fa-circle text-success"></i>
@@ -213,66 +178,7 @@
                          </p>
                      </a>
                      <ul class="nav nav-treeview">
-                         @can('banner-list')
-                         <li class="nav-item">
-                             <a href="{{ route('banner.index') }}" class="nav-link">
-                                 <i class="nav-icon fas fa-angle-right"></i>
-                                 <p>
-                                     Baner
-                                 </p>
-                             </a>
-                         </li>
-                         @endcan
-                         @can('gallery-list')
-                         <li class="nav-item">
-                             <a href="{{ route('gallery.index') }}" class="nav-link">
-                                 <i class="nav-icon fas fa-angle-right"></i>
-                                 <p>
-                                     Galeri
-                                 </p>
-                             </a>
-                         </li>
-                         @endcan
-                         @can('page-list')
-                         <li class="nav-item">
-                             <a href="{{ route('page.index') }}" class="nav-link">
-                                 <i class="nav-icon fas fa-angle-right"></i>
-                                 <p>
-                                     Halaman
-                                 </p>
-                             </a>
-                         </li>
-                         @endcan
-                         @can('menu-list')
-                         <li class="nav-item">
-                             <a href="{{ route('menu.index') }}" class="nav-link">
-                                 <i class="nav-icon fas fa-angle-right"></i>
-                                 <p>
-                                     Menu
-                                 </p>
-                             </a>
-                         </li>
-                         @endcan
-                         @can('user-list')
-                         <li class="nav-item">
-                             <a href="{{ route('user.index') }}" class="nav-link">
-                                 <i class="nav-icon fas fa-angle-right"></i>
-                                 <p>
-                                     Pengguna
-                                 </p>
-                             </a>
-                         </li>
-                         @endcan
-                         @can('profile-list')
-                         <li class="nav-item">
-                             <a href="{{ route('profile.index') }}" class="nav-link">
-                                 <i class="nav-icon fas fa-angle-right"></i>
-                                 <p>
-                                     Profil SKPD
-                                 </p>
-                             </a>
-                         </li>
-                         @endcan
+
                          @can('role-list')
                          <li class="nav-item">
                              <a href="{{ route('roles.index') }}" class="nav-link">
@@ -283,49 +189,21 @@
                              </a>
                          </li>
                          @endcan
-                         @can('slide-list')
+                         @can('user-list')
                          <li class="nav-item">
-                             <a href="{{ route('slide.index') }}" class="nav-link">
+                             <a href="{{ route('user.index') }}" class="nav-link">
                                  <i class="nav-icon fas fa-angle-right"></i>
                                  <p>
-                                     Slide
+                                     User
                                  </p>
                              </a>
                          </li>
                          @endcan
+
                      </ul>
                  </li>
-                 @else
-                 @can('persyaratan_user-list')
-                 <li class="nav-item">
-                     <a href="{{ route('berkas.index') }}" class="nav-link">
-                         <i class="nav-icon far fa-circle text-success"></i>
-                         <p>
-                             Berkas
-                         </p>
-                     </a>
-                 </li>
-                 @endcan
-                 @can('detail_user-list')
-                 <li class="nav-item">
-                     <a href="{{ route('registrasi.index') }}" class="nav-link">
-                         <i class="nav-icon far fa-circle text-success"></i>
-                         <p>
-                             Pendaftaran
-                         </p>
-                     </a>
-                 </li>
-                 @endcan
-                 @endif
-                 <li class="nav-item">
-                     <a href="/chatify" class="nav-link">
-                         <i class="nav-icon far fa-circle text-success"></i>
-                         <p>
-                             Konsultasi live chat
-                         </p>
-                     </a>
+                 @endcanany
 
-                 </li>
                  <li class="nav-item">
                      <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                          <i class="nav-icon far fa-circle text-success"></i>

@@ -7,9 +7,9 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex justify-content-between">
-                            <h3>Registrasi</h3>
+                            <h1 class="h5 text-dark">Registrasi</h1>
                             @can('detail_user-create')
-                            <a href="{{ route('detail_user.create') }}" class="btn btn-outline-secondary">
+                            <a href="{{ route('detail_user.create') }}" class="btn btn-dark">
                                 <i class="fas fa-plus"></i> Daftar
                             </a>
                             @endcan
@@ -26,25 +26,23 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th style="width: 10px">No</th>
                                     <th>Tanggal</th>
-                                    <th>No. Registrasi</th>
+                                    <th>Nomor</th>
                                     <th>Nama</th>
-                                    <th>Pelayanan</th>
+                                    <th>Layanan</th>
                                     <th style="width: 190px">--</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse($items as $item)
                                 <tr>
-                                    <td>{{ $items->count() * ($items->currentPage() - 1) + $loop->iteration }}</td>
                                     <td>{{ $item->created_at ?? null }}</td>
                                     <td>{{ $item->no_registrasi ?? null }}</td>
                                     <td>{{ $item->name ?? null }}</td>
                                     <td>{{ $item->nama_ujian ?? null }}</td>
                                     <td>
                                         @can('registrasi-list')
-                                        <a href="{{ route('registrasi.show', $item->id) }}" class="btn btn-outline-secondary">
+                                        <a href="{{ route('registrasi.show', $item->id) }}" class="btn btn-outline-dark">
                                             <i class="fas fa-eye"></i>
                                         </a>
                                         @endcan
@@ -52,7 +50,7 @@
                                         <form action="{{route('registrasi.destroy', $item->id) }}" method="post" class="d-inline">
                                             @csrf
                                             @method('delete')
-                                            <button type="submit" class="btn btn-secondary"><i class="fas fa-trash"></i></button>
+                                            <button type="submit" class="btn btn-outline-dark"><i class="fas fa-trash"></i></button>
                                         </form>
                                         @endcan
                                     </td>
@@ -60,7 +58,7 @@
                                 </tr>
                                 @empty
                                 <tr>
-                                    <td colspan="6">Empty</td>
+                                    <td colspan="5">Empty</td>
                                 </tr>
                                 @endforelse
                             </tbody>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\DetailUserRequest;
 use App\Models\Detail_user;
 use App\Models\Golongan;
+use App\Models\JenjangPendidikan;
 use App\Models\Registrasi;
 use App\Models\Skpd;
 use App\Models\Ujian;
@@ -40,9 +41,10 @@ class DetailUserController extends Controller
     {
         $item = new Detail_user();
         $golongans = Golongan::get();
+        $jenjang_pendidikans = JenjangPendidikan::get();
         $skpds = Skpd::get();
         $ujians = Ujian::get();
-        return view('pages.detail_user.create', compact('item', 'ujians', 'golongans', 'skpds'));
+        return view('pages.detail_user.create', compact('item', 'ujians', 'golongans', 'skpds', 'jenjang_pendidikans'));
     }
 
     /**
@@ -55,10 +57,16 @@ class DetailUserController extends Controller
     {
         $data = $request->all();
         $data['id_user'] = auth()->user()->id;
+        $data['tgl_lahir'] = date('Y-m-d', strtotime($request->tgl_lahir));
         $detailUser = Detail_user::create($data);
         $registrasi = [
             'id_detail_user' => $detailUser->id,
-            'no_registrasi' => uniqid()
+            'id_jenjang_pendidikan' => $request->id_jenjang_pendidikan2,
+            'program_studi' => $request->program_studi,
+            'fakultas' => $request->fakultas,
+            'universitas' => $request->universitas,
+            'tgl_diterima' => date('Y-m-d', strtotime($request->tgl_diterima)),
+            'no_registrasi' => date('YmdHis')
         ];
         Registrasi::create($registrasi);
         session()->flash('success', 'Registrasi Berhasil.');
@@ -86,9 +94,10 @@ class DetailUserController extends Controller
     {
         $item = Detail_user::findOrFail($id);
         $golongans = Golongan::get();
+        $jenjang_pendidikans = JenjangPendidikan::get();
         $skpds = Skpd::get();
         $ujians = Ujian::get();
-        return view('pages.detail_user.edit', compact('item', 'ujians', 'golongans', 'skpds'));
+        return view('pages.detail_user.edit', compact('item', 'ujians', 'golongans', 'skpds', 'jenjang_pendidikans'));
     }
 
     /**

@@ -7,9 +7,9 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex justify-content-between">
-                            <h3 class="card-title">Persyaratan</h3>
+                            <h3 class="card-title">Persyaratan/Kelengkapan</h3>
                             @can('persyaratan-create')
-                            <a href="{{ route('persyaratan.create') }}" class="btn btn-outline-secondary">
+                            <a href="{{ route('persyaratan.create') }}" class="btn btn-outline-dark">
                                 <i class="fas fa-plus"></i> Tambah persyaratan
                             </a>
                             @endcan
@@ -26,22 +26,22 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th style="width: 10px">No</th>
+                                    <th>No</th>
                                     <th>Ujian</th>
                                     <th>Persyaratan</th>
-                                    <th style="width: 150px">#</th>
+                                    <th>--</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse($items as $item)
                                 <tr>
-                                    <td>{{ $items->count() * ($items->currentPage() - 1) + $loop->iteration }}</td>
-                                    <td>{{ $item->ujian->nama_ujian }}</td>
-                                    <td>{{ $item->nama_persyaratan }}</td>
+                                    <td>{{ $item->created_at ?? null }}</td>
+                                    <td>{{ $item->ujian->nama_ujian ?? null }}</td>
+                                    <td>{{ $item->nama_persyaratan ?? null }}</td>
 
                                     <td>
                                         @can('persyaratan-edit')
-                                        <a href="{{ route('persyaratan.edit', $item->id) }}" class="btn btn-outline-secondary">
+                                        <a href="{{ route('persyaratan.edit', $item->id) }}" class="btn btn-outline-dark">
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>
                                         @endcan
@@ -49,7 +49,7 @@
                                         <form action="{{route('persyaratan.destroy', $item->id) }}" method="post" class="d-inline">
                                             @csrf
                                             @method('delete')
-                                            <button type="submit" class="btn btn-secondary"><i class="fas fa-trash"></i></button>
+                                            <button type="submit" class="btn btn-dark"><i class="fas fa-trash"></i></button>
                                         </form>
                                         @endcan
                                     </td>

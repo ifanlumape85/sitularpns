@@ -13,12 +13,12 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <div class="card card-primary">
+                <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">{{ $item->nama_ujian }}</h3>
                     </div>
                     <div class="card-body">
-                        <p><strong>{{ $item->nama_ujian }}</strong>({{ $item->deskripsi }})</p>
+                        <p><strong>{{ $item->nama_ujian }}</strong><br />({{ $item->deskripsi }})</p>
                         @if($item->persyaratan)
                         <p><strong>Adapun persyaratan adalah sebagai berikut :</strong></p>
                         <ol>
@@ -30,7 +30,7 @@
                         </ol>
                     </div>
                     <div class="card-footer">
-                        <a href="{{ route('detail_user.create') }}" class="btn btn-default">Daftar Ujian</a>
+                        <a href="{{ route('detail_user.create') }}" class="btn btn-default">Daftar</a>
                     </div>
                 </div>
             </div>

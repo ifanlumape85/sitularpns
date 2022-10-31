@@ -14,9 +14,12 @@ class Detail_user extends Model
 
     protected $fillable = [
         'id_user',
+        'tempat_lahir',
+        'tgl_lahir',
         'id_ujian',
         'nip',
         'id_golongan',
+        'id_jenjang_pendidikan',
         'jabatan',
         'id_skpd'
     ];
@@ -36,6 +39,11 @@ class Detail_user extends Model
     public function ujian()
     {
         return $this->belongsTo(Ujian::class, 'id_ujian', 'id');
+    }
+
+    public function jenjang_pendidikan()
+    {
+        return $this->belongsTo(JenjangPendidikan::class, 'id_jenjang_pendidikan', 'id');
     }
 
     public function user()

@@ -13,7 +13,14 @@ class Registrasi extends Model
     protected $table = 'registrasi';
 
     protected $fillable = [
-        'id_detail_user', 'no_registrasi'
+        'id_detail_user',
+        'id_jenjang_pendidikan',
+        'program_studi',
+        'fakultas',
+        'universitas',
+        'tgl_diterima',
+        'biaya',
+        'no_registrasi'
     ];
 
     protected $hidden = [];
@@ -21,6 +28,11 @@ class Registrasi extends Model
     public function detail_user()
     {
         return $this->belongsTo(Detail_user::class, 'id_detail_user', 'id');
+    }
+
+    public function jenjang_pendidikan()
+    {
+        return $this->belongsTo(JenjangPendidikan::class, 'id_jenjang_pendidikan', 'id');
     }
 
     public function persyaratan_user()

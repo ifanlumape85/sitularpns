@@ -16,19 +16,19 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex justify-content-between">
-                            <h2 class="h4">Detail Berkas</h2>
+                            <h2 class="h4">Detail Surat</h2>
                             @can('registrasi-list')
                             <a href="{{ route('registrasi.show', $item->id_registrasi) }}" class="btn btn-default">Kembali</a>
                             @endcan
                         </div>
                     </div>
                     <div class="card-body">
-                        <strong>Nama</strong>
-                        <p class="text-muted">{{ $item->registrasi->detail_user->nip ?? null }}<br />{{ $item->registrasi->detail_user->user->name ?? null }}</p>
-                        <strong>Pelayanan</strong>
-                        <p class="text-muted">{{ $item->persyaratan->ujian->nama_ujian ?? null }}</p>
-                        <strong>Berkas Persyaratan</strong>
-                        <p class="text-muted">{{ $item->persyaratan->nama_persyaratan ?? null }}</p>
+                        <div>NIP</div>
+                        <p class="text-bold">{{ $item->registrasi->detail_user->nip ?? null }}</p>
+                        <div>Nama</div>
+                        <p class="text-bold">{{ $item->registrasi->detail_user->user->name ?? null }}</p>
+                        <div>Berkas Persyaratan</div>
+                        <p class="text-bold">{{ $item->persyaratan->nama_persyaratan ?? null }}</p>
 
 
                         <embed src="{{ Storage::url($item->berkas) }}" type="application/pdf" width="100%" height="860">

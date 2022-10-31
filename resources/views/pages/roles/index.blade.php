@@ -9,7 +9,7 @@
                         <div class="d-flex justify-content-between">
                             <h3 class="card-title">Role Management</h3>
                             @can('role-create')
-                            <a href="{{ route('roles.create') }}" class="btn btn-primary">
+                            <a href="{{ route('roles.create') }}" class="btn btn-dark">
                                 <i class="fas fa-plus"></i> Create
                             </a>
                             @endcan
@@ -26,7 +26,7 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th style="width: 10px">No</th>
+                                    <th>Tanggal</th>
                                     <th>Name</th>
                                     <th style="width: 150px">Action</th>
                                 </tr>
@@ -34,16 +34,16 @@
                             <tbody>
                                 @forelse($items as $item)
                                 <tr>
-                                    <td>{{ $items->count() * ($items->currentPage() - 1) + $loop->iteration }}</td>
-                                    <td>{{ $item->name }}</td>
+                                    <td>{{ $item->created_at ?? null }}</td>
+                                    <td>{{ $item->name ?? null }}</td>
                                     <td>
-                                        <a href="{{ route('roles.edit', $item->id) }}" class="btn btn-info">
+                                        <a href="{{ route('roles.edit', $item->id) }}" class="btn btn-outline-dark">
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>
                                         <form action="{{route('roles.destroy', $item->id) }}" method="post" class="d-inline">
                                             @csrf
                                             @method('delete')
-                                            <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                            <button type="submit" class="btn btn-outline-dark"><i class="fas fa-trash"></i></button>
                                         </form>
                                     </td>
 

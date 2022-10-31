@@ -6,6 +6,10 @@
     $(function() {
         $('.select2').select2();
         bsCustomFileInput.init();
+
+        $('#tgl_lahir').datetimepicker({
+            format: 'L'
+        });
     });
 </script>
 @endpush
