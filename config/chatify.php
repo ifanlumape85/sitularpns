@@ -6,7 +6,7 @@ return [
     | Messenger display name
     |-------------------------------------
     */
-    'name' => env('CHATIFY_NAME', 'Warkop Sipaten'),
+    'name' => env('CHATIFY_NAME', 'SITULAR PNS'),
 
     /*
     |-------------------------------------
