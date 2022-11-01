@@ -42,7 +42,7 @@
                                         <form action="{{route('jenjang_pendidikan.destroy', $item->id) }}" method="post" class="d-inline">
                                             @csrf
                                             @method('delete')
-                                            <button type="submit" class="btn btn-ouline-dark"><i class="fas fa-trash"></i></button>
+                                            <button type="submit" class="btn btn-outline-dark"><i class="fas fa-trash"></i></button>
                                         </form>
                                     </td>
 

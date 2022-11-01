@@ -27,8 +27,8 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Ujian</th>
-                                    <th>Persyaratan</th>
+                                    <th>Layanan</th>
+                                    <th>Kelengkapan</th>
                                     <th>--</th>
                                 </tr>
                             </thead>
