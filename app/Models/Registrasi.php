@@ -25,6 +25,16 @@ class Registrasi extends Model
 
     protected $hidden = [];
 
+    public function getCreatedAtAttribute($date)
+    {
+        return date('d-m-y H:i:s', strtotime($date));
+    }
+
+    public function getUpdatedAtAttribute($date)
+    {
+        return date('d-m-y H:i:s', strtotime($date));
+    }
+    
     public function detail_user()
     {
         return $this->belongsTo(Detail_user::class, 'id_detail_user', 'id');

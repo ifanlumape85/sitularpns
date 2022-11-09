@@ -37,6 +37,15 @@
                             <div class="mb-4">
                                 <h3>Register</h3>
                                 <p class="mb-4">Sistem Informasi Tugas Belajar (SI TULAR PNS) .</p>
+                                @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                @endif
                             </div>
                             <form method="POST" action="{{ route('register') }}">
                                 @csrf

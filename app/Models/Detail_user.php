@@ -26,6 +26,16 @@ class Detail_user extends Model
 
     protected $hidden = [];
 
+    public function getCreatedAtAttribute($date)
+    {
+        return date('d-m-y H:i:s', strtotime($date));
+    }
+
+    public function getUpdatedAtAttribute($date)
+    {
+        return date('d-m-y H:i:s', strtotime($date));
+    }
+    
     public function golongan()
     {
         return $this->belongsTo(Golongan::class, 'id_golongan', 'id');

@@ -25,4 +25,16 @@ class JenjangPendidikanController extends Controller
         ];
         return response()->json($response, 200);
     }
+
+    public function all(Request $request)
+    {
+        $items = JenjangPendidikan::get();
+
+        $response = [
+            'code' => 1,
+            'message' => 'Sukses',
+            'jenjang_pendidikans' => $items->toArray()
+        ];
+        return response()->json($response, 200);
+    }
 }

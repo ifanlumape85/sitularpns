@@ -12,6 +12,28 @@ use Illuminate\Support\Str;
 
 class PersyaratanUserController extends Controller
 {
+    public function index(Request $request)
+    {
+        $items = Persyaratan_user::select('persyaratan_user.id', 'persyaratan_user.id_registrasi', 'persyaratan_user.berkas', 'persyaratan_user.created_at', 'persyaratan_user.updated_at')
+            ->where(function ($query) use ($request) {
+                return $request->input('id') ?
+                    $query->where('detail_user.id_user', $request->input('id')) : '';
+            })->join('persyaratan', 'persyaratan_user.id_persyaratan', '=', 'persyaratan.id')
+            ->join('registrasi', 'persyaratan_user.id_registrasi', '=', 'registrasi.id')
+            ->join('detail_user', 'registrasi.id_detail_user', '=', 'detail_user.id')
+            ->orderBy('persyaratan_user.id', 'desc')
+            ->skip($request->input('start') ?? 0)
+            ->take($request->input('limit') ?? 10)
+            ->get();
+
+        $response = [
+            'code' => 1,
+            'message' => 'Sukses',
+            'persyaratan_users' => $items->toArray()
+        ];
+        return response()->json($response, 200);
+    }
+
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [

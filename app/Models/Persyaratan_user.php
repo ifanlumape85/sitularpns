@@ -18,6 +18,16 @@ class Persyaratan_user extends Model
 
     protected $hidden = [];
 
+    public function getCreatedAtAttribute($date)
+    {
+        return date('d-m-y H:i:s', strtotime($date));
+    }
+
+    public function getUpdatedAtAttribute($date)
+    {
+        return date('d-m-y H:i:s', strtotime($date));
+    }
+    
     public function registrasi()
     {
         return $this->belongsTo(Registrasi::class, 'id_registrasi', 'id');
