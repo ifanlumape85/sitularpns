@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SkpdController;
 use App\Http\Controllers\Admin\UjianController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +33,7 @@ Route::get('/', function () {
     return view('auth.login');
 })->name('home');
 
+Route::get('/privacy', [HomeController::class, 'privacy'])->name('privacy');
 Route::prefix('admin')->middleware(['auth', 'verified'])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/detail/{ujian:id}/ujian', [UjianController::class, 'show'])->name('detail-ujian');
