@@ -43,7 +43,7 @@
                                     <td>
                                         @can('registrasi-list')
                                         <a href="{{ route('registrasi.show', $item->id) }}" class="btn btn-outline-dark">
-                                            <i class="fas fa-eye"></i>
+                                            <i class="fas fa-eye"></i> Detail & Upload Berkas Persyaratan
                                         </a>
                                         @endcan
                                         @can('registrasi-delete')

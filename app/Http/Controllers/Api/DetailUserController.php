@@ -12,7 +12,7 @@ class DetailUserController extends Controller
 {
     public function index(Request $request)
     {
-        $items = Detail_user::with('registrasi', 'ujian', 'golongan', 'skpd', 'jenjang_pendidikan')->where(function ($query) use ($request) {
+        $items = Detail_user::with('registrasi', 'registrasi.jenjang_pendidikan', 'ujian', 'golongan', 'skpd', 'jenjang_pendidikan')->where(function ($query) use ($request) {
             return $request->input('id') ?
                 $query->where('id_user', $request->input('id')) : '';
         })->orderBy('id', 'desc')
