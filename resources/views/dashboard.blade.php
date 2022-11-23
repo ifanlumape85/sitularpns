@@ -1,4 +1,4 @@
-@extends('layouts.backend.app', ['h1_title' => 'Warkop Sipaten'])
+@extends('layouts.backend.app', ['h1_title' => 'SITULAR PNS'])
 @section('content')
 <!-- Main content -->
 <section class="content">
