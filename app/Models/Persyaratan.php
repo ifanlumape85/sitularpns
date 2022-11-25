@@ -13,7 +13,7 @@ class Persyaratan extends Model
     protected $table = 'persyaratan';
 
     protected $fillable = [
-        'id_ujian', 'nama_persyaratan', 'slug'
+        'id_ujian', 'nama_persyaratan', 'slug', 'berkas'
     ];
 
     protected $hidden = [];
@@ -27,7 +27,7 @@ class Persyaratan extends Model
     {
         return date('d-m-y H:i:s', strtotime($date));
     }
-    
+
     public function ujian()
     {
         return $this->belongsTo(Ujian::class, 'id_ujian', 'id');
@@ -36,5 +36,12 @@ class Persyaratan extends Model
     public function persyaratan_user()
     {
         return $this->hasMany(Persyaratan_user::class, 'id_persyaratan', 'id');
+    }
+
+    public function persyaratan_user_id($id)
+    {
+        $items = Persyaratan_user::where('id_persyaratan', $this->id)
+        ->where('id_registrasi', $id)->get();
+        return $items;
     }
 }

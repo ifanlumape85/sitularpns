@@ -35,7 +35,7 @@ class Detail_user extends Model
     {
         return date('d-m-y H:i:s', strtotime($date));
     }
-    
+
     public function golongan()
     {
         return $this->belongsTo(Golongan::class, 'id_golongan', 'id');

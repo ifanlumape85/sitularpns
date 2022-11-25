@@ -26,7 +26,19 @@
         <label for="nama_persyaratan">Persyaratan</label>
         <input type="text" class="form-control" id="nama_persyaratan" name="nama_persyaratan" placeholder="Nama Persyaratan" value="{{ old('nama_persyaratan') ?? $item->nama_persyaratan }}">
     </div>
+    @if(Storage::disk('public')->exists($item->berkas ?? null))
 
+    <a h43r="{{ Storage::url($item->berkas ?? null) }}">{{ $item->berkas ?? null }}</a>
+    @endif
+    <div class="form-group">
+        <label for="berkas">PDF</label>
+        <div class="input-group">
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="berkas" name="berkas">
+                <label class="custom-file-label" for="berkas">Choose file</label>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- /.card-body -->
 

@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Registrasi extends Model
 {
     use HasFactory;
-    use SoftDeletes;
+    // use SoftDeletes;
     protected $table = 'registrasi';
 
     protected $fillable = [
@@ -34,7 +34,7 @@ class Registrasi extends Model
     {
         return date('d-m-y H:i:s', strtotime($date));
     }
-    
+
     public function detail_user()
     {
         return $this->belongsTo(Detail_user::class, 'id_detail_user', 'id');
@@ -48,5 +48,10 @@ class Registrasi extends Model
     public function persyaratan_user()
     {
         return $this->belongsTo(Persyaratan_user::class, 'id_registrasi', 'id');
+    }
+
+    public function persyaratan_users()
+    {
+        return $this->hasMany(Persyaratan_user::class, 'id_registrasi', 'id');
     }
 }

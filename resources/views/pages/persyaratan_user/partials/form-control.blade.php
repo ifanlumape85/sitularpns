@@ -21,19 +21,16 @@
         <label>Body</label>
         <textarea class="form-control" rows="3" placeholder="Enter ..." name="body" id="body">{{ old('body') ?? $item->body }}</textarea>
     </div>
-    @if(Storage::disk('public')->exists($item->image ?? null))
+    @if(Storage::disk('public')->exists($item->berkas ?? null))
 
-    <img src="{{ Storage::url($item->image ?? null) }}" width="200px" />
+    <a h43r="{{ Storage::url($item->berkas ?? null) }}">{{ $item->berkas ?? null }}</a>
     @endif
     <div class="form-group">
-        <label for="image">Image(JPG,JPEG) 1920x810</label>
+        <label for="berkas">PDF</label>
         <div class="input-group">
             <div class="custom-file">
-                <input type="file" class="custom-file-input" id="image" name="image">
-                <label class="custom-file-label" for="image">Choose file</label>
-            </div>
-            <div class="input-group-append">
-                <span class="input-group-text">Upload</span>
+                <input type="file" class="custom-file-input" id="berkas" name="berkas">
+                <label class="custom-file-label" for="berkas">Choose file</label>
             </div>
         </div>
     </div>

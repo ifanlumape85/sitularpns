@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Persyaratan_user extends Model
 {
     use HasFactory;
-    use SoftDeletes;
+    // use SoftDeletes;
     protected $table = 'persyaratan_user';
 
     protected $fillable = [
@@ -27,7 +27,7 @@ class Persyaratan_user extends Model
     {
         return date('d-m-y H:i:s', strtotime($date));
     }
-    
+
     public function registrasi()
     {
         return $this->belongsTo(Registrasi::class, 'id_registrasi', 'id');

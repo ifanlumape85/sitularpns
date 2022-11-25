@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\PersyaratanRequest;
 use App\Models\Persyaratan;
 use App\Models\Ujian;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class PersyaratanController extends Controller
@@ -50,6 +51,14 @@ class PersyaratanController extends Controller
     {
         $data = $request->all();
         $data['slug'] = Str::slug($request->nama_persyaratan);
+
+        if ($request->file('berkas')) {
+            $data['berkas'] = $request->file('berkas')->store(
+                'assets/berkas',
+                'public'
+            );
+        }
+
         Persyaratan::create($data);
         session()->flash('success', 'Persyaratan berhasil dibuat.');
         return redirect()->route('persyaratan.create');
@@ -90,6 +99,13 @@ class PersyaratanController extends Controller
     {
         $data = $request->all();
         $item = Persyaratan::findOrFail($id);
+        if ($request->file('berkas')) {
+            Storage::delete($item->berkas);
+            $data['berkas'] = $request->file('berkas')->store(
+                'assets/berkas',
+                'public'
+            );
+        }
         $item->update($data);
         session()->flash('success', 'Persyaratan telah diperbaharui.');
         return redirect()->route('persyaratan.index');
@@ -104,6 +120,7 @@ class PersyaratanController extends Controller
     public function destroy($id)
     {
         $item = Persyaratan::findOrFail($id);
+        Storage::delete($item->berkas);
         $item->delete();
         session()->flash('success', 'Persyaratan telah terhapus.');
         return redirect()->route('persyaratan.index');

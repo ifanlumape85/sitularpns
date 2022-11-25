@@ -36,6 +36,9 @@ Route::get('/', function () {
 Route::get('/privacy', [HomeController::class, 'privacy'])->name('privacy');
 Route::prefix('admin')->middleware(['auth', 'verified'])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/status_registrasi', [DashboardController::class, 'status'])->name('status_registrasi');
+    Route::get('/pengguna_aktif', [DashboardController::class, 'aktif'])->name('aktif');
+    Route::get('/pengguna_tidak_aktif', [DashboardController::class, 'tidak'])->name('tidak');
     Route::get('/detail/{ujian:id}/ujian', [UjianController::class, 'show'])->name('detail-ujian');
     Route::get('/daftar/ujian', [UjianController::class, 'create'])->name('daftar-ujian');
     Route::get('/cetak/{registrasi:id}/bukti-pendaftaran', [RegistrasiController::class, 'pdf'])->name('cetak-registrasi');

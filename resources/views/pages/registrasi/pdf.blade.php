@@ -124,7 +124,7 @@
             <td style="width: 200px;">{{ $persyaratan->nama_persyaratan ?? null }}</td>
             <td>:
                 @if($persyaratan->persyaratan_user)
-                @forelse($persyaratan->persyaratan_user as $persyaratan_user)
+                @forelse($persyaratan->persyaratan_user_id($item->id) as $persyaratan_user)
                 Sudah diupload
                 @empty
                 Belum diupload

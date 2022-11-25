@@ -21,13 +21,13 @@
                         <p><strong>{{ $item->nama_ujian }}</strong><br />({{ $item->deskripsi }})</p>
                         @if($item->persyaratan)
                         <p><strong>Adapun persyaratan adalah sebagai berikut :</strong></p>
-                        <ol>
-                            @foreach($item->persyaratan as $persyaratan)
-                            <li>{{ $persyaratan->nama_persyaratan }}</li>
-                            @endforeach
+                        <div class="text-danger text-uppercase mt-4 mb-4 text-bold">Surat Pernyataan, Surat Permohonan, Surat Rekomendasi Kepala Unit Kerja mengikuti format yang sudah ditentukan. Download dan diisi sesuai format !!!</div>
+                        @foreach($item->persyaratan as $persyaratan)
 
-                            @endif
-                        </ol>
+                        <a href="{{ $persyaratan->berkas ? env('APP_URL').'/storage/'.$persyaratan->berkas : null }}" target="_blank" class="btn btn-outline-dark btn-block mb-2">{{ $persyaratan->nama_persyaratan }}</a>
+                        @endforeach
+
+                        @endif
                     </div>
                     <div class="card-footer">
                         <a href="{{ route('detail_user.create') }}" class="btn btn-default">Daftar</a>

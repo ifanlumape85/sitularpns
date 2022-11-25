@@ -19,7 +19,7 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form method="post" action="{{ route('persyaratan.store') }}">
+                    <form method="post" action="{{ route('persyaratan.store') }}" enctype="multipart/form-data">
                         @csrf
                         @include('pages.persyaratan.partials.form-control')
                     </form>
