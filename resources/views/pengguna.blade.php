@@ -27,7 +27,7 @@
                                     @if($item->email_verified_at == null)
                                     <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                                         @csrf
-                                        <button type="submit" class="btn btn-outline-dark p-0 m-0 align-baseline">Kirim email aktivasi</button>.
+                                        <button type="submit" class="btn btn-outline-dark">Kirim email aktivasi</button>.
                                     </form>
                                     @else
                                     {{ $item->email_verified_at ?? null }}
