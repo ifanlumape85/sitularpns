@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Persyaratan extends Model
 {
     use HasFactory;
-    use SoftDeletes;
+    // use SoftDeletes;
     protected $table = 'persyaratan';
 
     protected $fillable = [
@@ -40,8 +40,8 @@ class Persyaratan extends Model
 
     public function persyaratan_user_id($id)
     {
-        $items = Persyaratan_user::where('id_persyaratan', $this->id)
-        ->where('id_registrasi', $id)->get();
-        return $items;
+        $item = Persyaratan_user::where('id_persyaratan', $this->id)
+            ->where('id_registrasi', $id)->first();
+        return $item;
     }
 }

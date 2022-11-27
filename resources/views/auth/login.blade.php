@@ -28,12 +28,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <p>&nbsp;</p>
-                    <img src="/undraw_wait_in_line_o2aq.svg" alt="Image" class="img-fluid">
+                    <img src="/bg-sitular.png" alt="Image" class="img-fluid mt-n4">
                 </div>
                 <div class="col-md-6 contents">
                     <div class="row justify-content-center">
                         <div class="col-md-8">
+
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
                             <div class="mb-4">
                                 <h3>Sign In</h3>
                                 <p class="mb-4">Sistem Informasi Tugas Belajar (SI TULAR PNS).</p>

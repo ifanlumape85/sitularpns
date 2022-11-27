@@ -17,6 +17,7 @@
                                 <th>Nomor</th>
                                 <th>NIP</th>
                                 <th>Nama</th>
+                                <th>Layanan</th>
                                 <th>Berkas</th>
                                 <th>--</th>
                             </tr>
@@ -26,6 +27,7 @@
                                 <td>{{ $registrasi->no_registrasi ?? null }}</td>
                                 <td>{{ $registrasi->detail_user->nip ?? null }}</td>
                                 <td>{{ $registrasi->detail_user->user->name ?? null }}</td>
+                                <td>{{ $registrasi->detail_user->ujian->nama_ujian ?? null }}</td>
                                 <td>{{ $registrasi->persyaratan_users()->count() ?? 0 }}/{{ $registrasi->detail_user->ujian->persyaratan()->count() ?? 0 }}</td>
                                 <td><a href="{{ route('registrasi.show', $registrasi->id) }}" class="btn btn-outline-dark"><i class="fa fa-eye"></i></a></td>
                             </tr>

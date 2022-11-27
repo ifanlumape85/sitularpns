@@ -90,15 +90,13 @@
 
                                                 <div class="text-bold">{{ $persyaratan->nama_persyaratan ?? null }}</div>
 
-                                                @if($persyaratan->persyaratan_user)
-
-                                                @forelse($persyaratan->persyaratan_user_id($item->id) as $persyaratan_user)
+                                                @php $berkas = $persyaratan->persyaratan_user_id($item->id) @endphp
+                                                @if($berkas)
                                                 <div class="text-left">
-                                                    <a href="{{ route('berkas.show', $persyaratan_user->id) }}" class="btn btn-outline-dark mt-2 mr-2"><i class="fa fa-file"></i> Sudah diupload</a>
+                                                    <a href="{{ route('berkas.show', $berkas->id) }}" class="btn btn-outline-dark mt-2 mr-2"><i class="fa fa-file"></i> Sudah diupload</a>
                                                 </div>
-                                                @empty
+                                                @else
                                                 <a class="btn btn-outline-danger">Berkas belum diupload</a>
-                                                @endforelse
                                                 @endif
                                             </div>
                                         </div>
